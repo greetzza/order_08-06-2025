@@ -1,0 +1,140 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Elegant Greeting Card</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <div class="container">
+        <h1>You Did It!</h1>
+        <p class="instruction" id="ins">Click on the image below to reveal your card</p>
+        
+        <img src="https://images.unsplash.com/photo-1518895949257-7621c3c786d7?ixlib=rb-1.2.1&auto=format&fit=crop&w=500&q=80" 
+             alt="Greeting Card" 
+             class="card-image"
+             id="cardTrigger">
+        
+        <div class="card-content" id="cardContent">
+            
+            <h2>To Taniaa</h2>
+            <p>I’m proud of how far you’ve come.</p>
+<p>You pushed through the stress, the doubt, and the late nights.</p>
+<p>You made it happen.</p>
+            <p>This is your moment —</p>
+<p>You’ve earned it.</p>
+<p>Take a breath, smile, and keep going. i'm proud of you, of course! always 🤍</p>
+            <p class="signature">With warmest regards,<br>Your Friend</p>
+            
+            <div class="music-control">
+                <button id="playBtn">Play Music</button>
+                <button id="pauseBtn">Pause Music</button>
+            </div>
+            
+            <div class="gallery" id="gallery">
+                <h3>Memories</h3>
+                <div class="masonry">
+                    <div class="masonry-item">
+                        <img src="gambar/foto7.jpg" alt="Memory 1">
+                    </div>
+                    <div class="masonry-item">
+                        <img src="gambar/foto2.jpg" alt="Memory 2">
+                    </div>
+                    <div class="masonry-item">
+                        <img src="gambar/foto3.jpg" alt="Memory 3">
+                    </div>
+                    <div class="masonry-item">
+                        <img src="gambar/foto4.jpg" alt="Memory 4">
+                    </div>
+                    <div class="masonry-item">
+                        <img src="gambar/foto6.jpg" alt="Memory 5">
+                    </div>
+                    <div class="masonry-item">
+                        <img src="gambar/foto1.jpg" alt="Memory 6">
+                    </div>
+                    <div class="masonry-item">
+                        <img src="gambar/foto5.jpg" alt="Memory 7">
+                    </div>
+                    <div class="masonry-item">
+                        <img src="gambar/foto8.jpg" alt="Memory 8">
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    
+    <audio id="bgMusic" loop>
+        <source src="gambar/lagu.mp3" type="audio/mpeg">
+        Your browser does not support the audio element.
+    </audio>
+    
+    <script>
+        const cardTrigger = document.getElementById('cardTrigger');
+        const cardContent = document.getElementById('cardContent');
+        const gallery = document.getElementById('gallery');
+        const bgMusic = document.getElementById('bgMusic');
+        const playBtn = document.getElementById('playBtn');
+        const pauseBtn = document.getElementById('pauseBtn');
+        
+        // Create confetti elements
+        function createConfetti() {
+            const colors = ['#111', '#333', '#555', '#777', '#999', '#bbb', '#ddd'];
+            for (let i = 0; i < 50; i++) {
+                const confetti = document.createElement('div');
+                confetti.className = 'confetti';
+                confetti.style.left = Math.random() * 100 + 'vw';
+                confetti.style.backgroundColor = colors[Math.floor(Math.random() * colors.length)];
+                confetti.style.width = Math.random() * 8 + 4 + 'px';
+                confetti.style.height = Math.random() * 8 + 4 + 'px';
+                document.body.appendChild(confetti);
+                
+                // Animate confetti
+                setTimeout(() => {
+                    confetti.style.opacity = '1';
+                    confetti.style.transform = `translate(${Math.random() * 100 - 50}px, ${Math.random() * 200 + 100}px) rotate(${Math.random() * 360}deg)`;
+                    confetti.style.transition = `all ${Math.random() * 3 + 2}s ease`;
+                    
+                    // Remove confetti after animation
+                    setTimeout(() => {
+                        confetti.style.opacity = '0';
+                        setTimeout(() => {
+                            confetti.remove();
+                        }, 1000);
+                    }, 3000);
+                }, 0);
+            }
+        }
+        
+        cardTrigger.addEventListener('click', function() {
+            // Hide the trigger image
+            this.style.display = 'none';
+            
+
+            ins.style.display = 'none';
+            // Show the card content
+            cardContent.style.display = 'block';
+            
+            // Show the gallery
+            gallery.style.display = 'block';
+            
+            // Change background color
+            document.body.style.backgroundColor = '#eee';
+            
+            // Create confetti effect
+            createConfetti();
+            
+            // Play music
+            bgMusic.play();
+        });
+        
+        playBtn.addEventListener('click', function() {
+            bgMusic.play();
+        });
+        
+        pauseBtn.addEventListener('click', function() {
+            bgMusic.pause();
+        });
+    </script>
+</body>
+</html>
